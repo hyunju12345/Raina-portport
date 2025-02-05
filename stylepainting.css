@@ -1,0 +1,104 @@
+/* Game Section 스타일 */
+
+/* 부드러운 스크롤 적용 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 전체 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    background: linear-gradient(to bottom, #000000, #ffffff);
+    color: rgb(255, 255, 255);
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Header 스타일 */
+header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 80px;
+    background: #ffffff;
+    position: fixed; /* 네비게이션 고정 */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+
+header ul li a {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #000000;
+    transition: color 0.3s;
+}
+
+header ul li a:hover {
+    color: #ffcc00;
+}
+.painting-section {
+    padding: 100px 50px;
+    background: #f8f8f8;
+    text-align: left;
+}
+
+.painting-section h1 {
+    font-size: 3rem;
+    margin-bottom: 50px;
+    color: #000;
+}
+.painting-content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.painting-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.painting-item img {
+    width: 500px;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.painting-item h2 {
+    font-size: 1.8rem;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.painting-item p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.painting-item p strong {
+    color: #000;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: #ccc;
+    margin: 30px 0;
+}
