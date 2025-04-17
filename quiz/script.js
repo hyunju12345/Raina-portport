@@ -42,14 +42,36 @@ if (resultText && resultImage) {
 
   if (isNaN(avg)) {
     resultText.textContent = "Oops! Something went wrong. Please try again.";
-  } else if (avg < 34) {
-    resultText.textContent = "You are peaceful, nature-loving, and introspective. Try New Zealand or Norway!";
-    resultImage.src = "nature_result.png";
-  } else if (avg < 67) {
-    resultText.textContent = "You value balance, culture, and structure. Consider Canada or Germany!";
-    resultImage.src = "balance_result.png";
+  } else if (avg < 10) {
+    resultText.textContent = "Your perfect place is Reykjavik, Iceland!";
+    resultImage.src = "reykjavik.png";
+  } else if (avg < 20) {
+    resultText.textContent = "Your perfect place is Wellington, New Zealand!";
+    resultImage.src = "wellington.png";
+  } else if (avg < 30) {
+    resultText.textContent = "Your perfect place is Lucerne, Switzerland!";
+    resultImage.src = "lucerne.png";
+  } else if (avg < 40) {
+    resultText.textContent = "Your perfect place is Vancouver, Canada!";
+    resultImage.src = "vancouver.png";
+  } else if (avg < 50) {
+    resultText.textContent = "Your perfect place is Munich, Germany!";
+    resultImage.src = "munich.png";
+  } else if (avg < 60) {
+    resultText.textContent = "Your perfect place is Paris, France!";
+    resultImage.src = "paris.png";
+  } else if (avg < 70) {
+    resultText.textContent = "Your perfect place is Barcelona, Spain!";
+    resultImage.src = "barcelona.png";
+  } else if (avg < 80) {
+    resultText.textContent = "Your perfect place is Tokyo, Japan!";
+    resultImage.src = "tokyo.png";
+  } else if (avg < 90) {
+    resultText.textContent = "Your perfect place is New York City, USA!";
+    resultImage.src = "newyork.png";
   } else {
-    resultText.textContent = "You thrive in dynamic cities. Tokyo, New York, or Seoul could be perfect!";
-    resultImage.src = "city_result.png";
+    resultText.textContent = "Your perfect place is Seoul, South Korea!";
+    resultImage.src = "seoul.png";
   }
+  
 }
