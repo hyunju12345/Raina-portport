@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #a0eaff, #ffb3b3);
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  h1 {
+    text-align:center;
+    color: white;
+    padding: 300px;
+    border-radius: 12px;
+    font-size: 50px;
+    margin-bottom: 0px;
+  }
+  button,
+  .button-link {
+    display: block;
+    margin: 30px auto;
+    padding: 12px 24px;
+    font-size: 18px;
+    background: #ff8a65;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  
+  .button-link:hover {
+    background: #ff7043;
+  }
+  
+  

@@ -60,7 +60,8 @@ body {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   }
   
-  button {
+  button,
+  .button-link {
     display: block;
     margin: 30px auto;
     padding: 12px 24px;
@@ -70,10 +71,12 @@ body {
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
     transition: background 0.3s;
   }
   
-  button:hover {
+  .button-link:hover {
     background: #ff7043;
   }
   
