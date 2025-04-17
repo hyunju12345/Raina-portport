@@ -90,6 +90,12 @@ body {
   }
   
   .result-box img {
+    width: 100%;
     max-width: 300px;
-    margin-top: 1rem;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    margin: 1rem auto 0 auto;
+    border-radius: 16px;
   }
+  

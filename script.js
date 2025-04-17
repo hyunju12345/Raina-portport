@@ -73,6 +73,5 @@ if (resultText && resultImage) {
     resultText.textContent = "Your perfect place is Seoul, South Korea!";
     resultImage.src = "seoul.png";
   }
-
   
 }
