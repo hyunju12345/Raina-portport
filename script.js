@@ -1,3 +1,4 @@
+// 슬라이더 평균 계산 함수 (공통)
 function calculateSliderAverage() {
   const sliders = document.querySelectorAll("input[type='range']");
   let total = 0;
