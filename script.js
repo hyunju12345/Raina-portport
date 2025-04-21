@@ -12,6 +12,21 @@ const countryInfo = {
   korea: { name: "Seoul, South Korea", img: "seoul.png" },
 };
 
+const resultDescriptions = {
+  iceland: "You value calm, independence, and serenity. A quiet and introspective place like Reykjavik, Iceland, suits your peaceful nature.",
+  newzealand: "You enjoy freedom, open-mindedness, and natural beauty. Wellington, New Zealand, aligns with your easygoing and flexible lifestyle.",
+  switzerland: "You prefer order, quiet, and balance. Lucerne, Switzerland, is a peaceful place with high stability and natural charm.",
+  canada: "You appreciate cultural diversity, kindness, and a balanced lifestyle. Vancouver, Canada, reflects your friendly and thoughtful spirit.",
+  germany: "You are logical, direct, and value structure. Munich, Germany, fits your preference for clarity and efficient living.",
+  france: "You’re drawn to creativity, challenge, and depth. Paris, France, matches your artistic and ambitious mindset.",
+  spain: "You value joy, passion, and warmth. Barcelona, Spain, reflects your energetic and expressive personality.",
+  japan: "You respect tradition, detail, and stability. Tokyo, Japan, aligns with your disciplined and harmonious character.",
+  usa: "You love fast-paced energy, diversity, and opportunity. New York City, USA, is a perfect match for your dynamic lifestyle.",
+  korea: "You thrive in dynamic, community-centered, and driven environments. Seoul, South Korea, suits your ambitious and social energy.",
+};
+
+
+
 // 빈 점수판 초기화 함수
 function initializeScoreObj() {
   return {
@@ -92,7 +107,9 @@ function showFinalResult() {
   }
 
   const result = countryInfo[bestCountry];
-  resultText.textContent = `Your perfect place is ${result.name}!`;
+  const description = resultDescriptions[bestCountry];
+
+  resultText.textContent = `Your perfect place is ${result.name}!\n\n${description}`;
   resultImage.src = result.img;
 }
 
