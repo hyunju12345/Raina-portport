@@ -18,11 +18,10 @@ body {
     text-align: center;
     font-size: 20px;
     color: white;
-    margin-top: -250px;
-    margin-bottom: 100px;
+    margin-top: -200px;  /* 이걸 줄여줌 */
+    margin-bottom: 40px; /* 아래 여백은 자연스럽게 */
     padding: 0 20px;
   }
-  
   
   button,
   .button-link {
