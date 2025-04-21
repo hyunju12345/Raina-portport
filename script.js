@@ -1,77 +1,126 @@
-// 슬라이더 평균 계산 함수 (공통)
-function calculateSliderAverage() {
+// 나라 정보 (이름 + 이미지)
+const countryInfo = {
+  iceland: { name: "Reykjavik, Iceland", img: "reykjavik.png" },
+  newzealand: { name: "Wellington, New Zealand", img: "wellington.png" },
+  switzerland: { name: "Lucerne, Switzerland", img: "lucerne.png" },
+  canada: { name: "Vancouver, Canada", img: "vancouver.png" },
+  germany: { name: "Munich, Germany", img: "munich.png" },
+  france: { name: "Paris, France", img: "paris.png" },
+  spain: { name: "Barcelona, Spain", img: "barcelona.png" },
+  japan: { name: "Tokyo, Japan", img: "tokyo.png" },
+  usa: { name: "New York City, USA", img: "newyork.png" },
+  korea: { name: "Seoul, South Korea", img: "seoul.png" },
+};
+
+// 빈 점수판 초기화 함수
+function initializeScoreObj() {
+  return {
+    iceland: 0, newzealand: 0, switzerland: 0, canada: 0, germany: 0,
+    france: 0, spain: 0, japan: 0, usa: 0, korea: 0,
+  };
+}
+
+// 퀴즈 페이지 (quiz1, quiz2) 공통 점수 누적 로직
+function updateCountryScoresFromSliders(pagePart) {
   const sliders = document.querySelectorAll("input[type='range']");
-  let total = 0;
+  const scores = initializeScoreObj();
 
-  sliders.forEach((slider) => {
-    total += parseInt(slider.value);
+  sliders.forEach((slider, index) => {
+    const val = parseInt(slider.value);
+    const realIndex = pagePart === 1 ? index : index + 5; // quiz2는 6~10번 질문
+
+    if (val >= 60) {
+      switch (realIndex) {
+        case 0: scores.iceland += 1; break;
+        case 1: scores.newzealand += 1; break;
+        case 2: scores.usa += 1; break;
+        case 3: scores.canada += 1; break;
+        case 4: scores.korea += 1; break;
+        case 5: scores.korea += 1; break;
+        case 6: scores.france += 1; break;
+        case 7: scores.germany += 1; break;
+        case 8: scores.spain += 1; break;
+        case 9: scores.japan += 1; break;
+      }
+    } else if (val <= 40) {
+      switch (realIndex) {
+        case 0: scores.korea += 1; break;
+        case 1: scores.germany += 1; break;
+        case 2: scores.switzerland += 1; break;
+        case 3: scores.japan += 1; break;
+        case 4: scores.iceland += 1; break;
+        case 5: scores.switzerland += 1; break;
+        case 6: scores.switzerland += 1; break;
+        case 7: scores.japan += 1; break;
+        case 8: scores.canada += 1; break;
+        case 9: scores.spain += 1; break;
+      }
+    }
   });
 
-  return total / sliders.length;
+  return scores;
 }
 
-// quiz1.html → quiz2.html 이동 + 평균 저장
-const nextBtn = document.getElementById("nextBtn");
-if (nextBtn) {
-  nextBtn.addEventListener("click", () => {
-    const avg1 = calculateSliderAverage();
-    localStorage.setItem("quizPart1", avg1);
-    window.location.href = "quiz2.html";
-  });
-}
-
-// quiz2.html → result.html 이동 + 최종 평균 저장
-const submitBtn = document.getElementById("submitBtn");
-if (submitBtn) {
-  submitBtn.addEventListener("click", () => {
-    const avg2 = calculateSliderAverage();
-    const avg1 = parseFloat(localStorage.getItem("quizPart1"));
-    const finalAvg = !isNaN(avg1) ? (avg1 + avg2) / 2 : avg2;
-
-    localStorage.setItem("quizResultScore", finalAvg);
-    window.location.href = "result.html";
-  });
-}
-
-// result.html → 결과 보여주기
-const resultText = document.getElementById("resultText");
-const resultImage = document.getElementById("resultImage");
-
-if (resultText && resultImage) {
-  const avg = parseFloat(localStorage.getItem("quizResultScore"));
-
-  if (isNaN(avg)) {
-    resultText.textContent = "Oops! Something went wrong. Please try again.";
-  } else if (avg < 10) {
-    resultText.textContent = "Your perfect place is Reykjavik, Iceland!";
-    resultImage.src = "reykjavik.png";
-  } else if (avg < 20) {
-    resultText.textContent = "Your perfect place is Wellington, New Zealand!";
-    resultImage.src = "wellington.png";
-  } else if (avg < 30) {
-    resultText.textContent = "Your perfect place is Lucerne, Switzerland!";
-    resultImage.src = "lucerne.png";
-  } else if (avg < 40) {
-    resultText.textContent = "Your perfect place is Vancouver, Canada!";
-    resultImage.src = "vancouver.png";
-  } else if (avg < 50) {
-    resultText.textContent = "Your perfect place is Munich, Germany!";
-    resultImage.src = "munich.png";
-  } else if (avg < 60) {
-    resultText.textContent = "Your perfect place is Paris, France!";
-    resultImage.src = "paris.png";
-  } else if (avg < 70) {
-    resultText.textContent = "Your perfect place is Barcelona, Spain!";
-    resultImage.src = "barcelona.png";
-  } else if (avg < 80) {
-    resultText.textContent = "Your perfect place is Tokyo, Japan!";
-    resultImage.src = "tokyo.png";
-  } else if (avg < 90) {
-    resultText.textContent = "Your perfect place is New York City, USA!";
-    resultImage.src = "newyork.png";
-  } else {
-    resultText.textContent = "Your perfect place is Seoul, South Korea!";
-    resultImage.src = "seoul.png";
+// 점수 누적 합산
+function combineScores(score1, score2) {
+  const combined = initializeScoreObj();
+  for (const key in combined) {
+    combined[key] = (score1[key] || 0) + (score2[key] || 0);
   }
-  
+  return combined;
 }
+
+// 결과 보여주기 (result.html)
+function showFinalResult() {
+  const resultText = document.getElementById("resultText");
+  const resultImage = document.getElementById("resultImage");
+  if (!resultText || !resultImage) return;
+
+  const scores = JSON.parse(localStorage.getItem("quizFinalScores"));
+  if (!scores) {
+    resultText.textContent = "Oops! Something went wrong. Please try again.";
+    return;
+  }
+
+  let bestCountry = null;
+  let bestScore = -Infinity;
+  for (const [country, score] of Object.entries(scores)) {
+    if (score > bestScore) {
+      bestScore = score;
+      bestCountry = country;
+    }
+  }
+
+  const result = countryInfo[bestCountry];
+  resultText.textContent = `Your perfect place is ${result.name}!`;
+  resultImage.src = result.img;
+}
+
+// 페이지 로딩 시 버튼 이벤트 등록
+document.addEventListener("DOMContentLoaded", () => {
+  const nextBtn = document.getElementById("nextBtn");
+  const submitBtn = document.getElementById("submitBtn");
+
+  // quiz1.html
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      const scores = updateCountryScoresFromSliders(1);
+      localStorage.setItem("quizPart1", JSON.stringify(scores));
+      window.location.href = "quiz2.html";
+    });
+  }
+
+  // quiz2.html
+  if (submitBtn) {
+    submitBtn.addEventListener("click", () => {
+      const part1 = JSON.parse(localStorage.getItem("quizPart1")) || initializeScoreObj();
+      const part2 = updateCountryScoresFromSliders(2);
+      const final = combineScores(part1, part2);
+      localStorage.setItem("quizFinalScores", JSON.stringify(final));
+      window.location.href = "result.html";
+    });
+  }
+
+  // result.html
+  showFinalResult();
+});
