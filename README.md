@@ -35,7 +35,7 @@ way to explore new directions in life."
   - `quizPart1`: Stores score from quiz1
   - `quizFinalScores`: Stores combined final score
 
-## 이미지 파일 예시
+## image files
 
 | City         | Image Filename      |
 |--------------|---------------------|
