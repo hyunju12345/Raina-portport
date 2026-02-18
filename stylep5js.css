@@ -1,120 +1,105 @@
-/* 부드러운 스크롤 적용 */
-html {
-    scroll-behavior: smooth;
-}
-
-/* 전체 리셋 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+/* ============ Global ============ */
+:root{
+    --header-h: 76px;
+    --max-w: 900px;
+    --pad-x: clamp(16px, 4vw, 80px);
+    --gap: clamp(14px, 3vw, 28px);
+    --radius: 16px;
+  }
+  
+  html{ scroll-behavior:smooth; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  
+  body{
     font-family: 'Pretendard', sans-serif;
     background: linear-gradient(to bottom, #000000, #ffffff);
-    color: rgb(255, 255, 255);
-    line-height: 1.2;
-    margin: 0;
-}
-
-header {
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px 80px;
-    background: #ffffff;
-    position: fixed; /* 네비게이션 고정 */
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-header ul {
-    list-style: none;
-    display: flex;
-    gap: 50px;
-}
-
-header ul li a {
-    font-weight: bold;
-    font-size: 1.2rem;
-    text-decoration: none;
-    color: #000000;
-    transition: color 0.3s;
-}
-
-header ul li a:hover {
-    color: #ffcc00;
-}
-.p5js-section {
-    padding: 100px 50px;
-    background: #f8f8f8;
-    text-align: left;
-}
-
-.p5js-section h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: #000;
-    
-}
-
-.p5js-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* 줄인 값 (기존 40px → 20px) */
-    justify-content: center;
-    align-items: center;
-}
-
-
-.p5js-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 0;
-    background: #000000;
-    border-radius: 15px;
-    padding: 20px;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 700px; /* 고정된 넓이 */
-    height: 600px; /* 고정된 높이 */
-    overflow: hidden; /* 내부 내용이 넘치지 않도록 */
-}
-
-.p5js-frame {
-    width: 600px; /* 고정된 프레임 넓이 */
-    height: 600px; /* 고정된 프레임 높이 */
-    background: #000;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    overflow: hidden;
-}
-
-.p5js-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.p5js-item h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #fff;
-}
-
-.p5js-item p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #ddd;
-    text-align: center;
-    flex-shrink: 0; /* 텍스트가 크기를 변화시키지 않도록 고정 */
-    max-height: 80px; /* 최대 높이 제한 */
-    overflow: hidden; /* 넘치는 텍스트 숨기기 */
-    text-overflow: ellipsis; /* 말줄임표 추가 */
-} 
+    color:#fff;
+    line-height:1.5;
+  }
+  
+  main{ padding-top: calc(var(--header-h) + 24px); }
+  
+  /* ============ Header ============ */
+  header{
+    height: var(--header-h);
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding: 0 var(--pad-x);
+    background:#ffffff;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  header ul{
+    list-style:none;
+    display:flex;
+    gap: clamp(18px, 4vw, 50px);
+  }
+  header ul li a{
+    font-weight:700;
+    font-size: clamp(0.95rem, 1.1vw, 1.2rem);
+    text-decoration:none;
+    color:#000;
+    transition: color 0.2s ease;
+  }
+  header ul li a:hover{ color:#ffcc00; }
+  
+  /* ============ Page ============ */
+  .p5js-section{
+    background:#f8f8f8;
+    color:#000;
+    padding: clamp(36px, 6vw, 70px) var(--pad-x);
+  }
+  
+  .p5js-section h1{
+    max-width: var(--max-w);
+    margin: 0 auto 22px auto;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+  }
+  
+  .p5js-content{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display:flex;
+    flex-direction:column;
+    gap: var(--gap);
+  }
+  
+  .p5js-item{
+    background:#000;
+    border-radius: 18px;
+    padding: 18px;
+    color:#fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+  
+  .p5js-item h2{
+    font-size: 1.25rem;
+    margin-bottom: 14px;
+  }
+  
+  .p5js-frame{
+    width:100%;
+    aspect-ratio: 1 / 1;
+    background:#000;
+    border-radius: 12px;
+    overflow:hidden;
+  }
+  
+  .p5js-frame iframe{
+    width:100%;
+    height:100%;
+    border:none;
+    display:block;
+  }
+  
+  /* ============ Responsive ============ */
+  @media (max-width: 560px){
+    header{ justify-content:center; }
+  }
+  

@@ -1,215 +1,227 @@
-/* 부드러운 스크롤 적용 */
-html {
-    scroll-behavior: smooth;
-}
-
-/* 전체 리셋 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+/* ============ Global ============ */
+:root{
+    --header-h: 76px;
+    --max-w: 1200px;
+    --pad-x: clamp(16px, 4vw, 80px);
+    --gap: clamp(16px, 3vw, 50px);
+    --radius: 16px;
+  }
+  
+  html{ scroll-behavior:smooth; }
+  
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  
+  body{
     font-family: 'Pretendard', sans-serif;
     background: linear-gradient(to bottom, #000000, #ffffff);
-    color: rgb(255, 255, 255);
-    line-height: 1.2;
-    margin: 0;
-}
-
-/* Header 스타일 */
-header {
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px 80px;
-    background: #ffffff;
-    position: fixed; /* 네비게이션 고정 */
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-header ul {
-    list-style: none;
-    display: flex;
-    gap: 50px;
-}
-
-header ul li a {
-    font-weight: bold;
-    font-size: 1.2rem;
-    text-decoration: none;
-    color: #000000;
-    transition: color 0.3s;
-}
-
-header ul li a:hover {
-    color: #ffcc00;
-}
-
-/* About 섹션 */
-.intro {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 100px 50px; /* 헤더와 간격 */
-}
-
-.text h1 {
-    font-size: 5rem;
-    color: rgb(255, 255, 255);
-}
-
-
-
-.details {
-    display: flex;
-    gap: 50px;
-    margin-top: 20px;
-}
-
-.details h3 {
-    font-size: 1.5rem;
+    color:#fff;
+    line-height:1.35;
+  }
+  
+  /* Make anchor jumps not hide behind fixed header */
+  section{ scroll-margin-top: calc(var(--header-h) + 18px); }
+  
+  /* ============ Header (fixed) ============ */
+  header{
+    height: var(--header-h);
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding: 0 var(--pad-x);
+    background:#ffffff;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  
+  header ul{
+    list-style:none;
+    display:flex;
+    gap: clamp(18px, 4vw, 50px);
+  }
+  
+  header ul li a{
+    font-weight:700;
+    font-size: clamp(0.95rem, 1.1vw, 1.2rem);
+    text-decoration:none;
+    color:#000;
+    transition: color 0.2s ease;
+  }
+  header ul li a:hover{ color:#ffcc00; }
+  
+  /* ============ Layout wrappers ============ */
+  main{
+    padding-top: calc(var(--header-h) + 24px);
+  }
+  
+  /* ============ About ============ */
+  .intro{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: clamp(28px, 6vw, 80px) var(--pad-x);
+    display:grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--gap);
+    align-items:start;
+  }
+  
+  .text h1{
+    font-size: clamp(2.2rem, 5.5vw, 5rem);
+    line-height:1.05;
+    letter-spacing:-0.02em;
+  }
+  
+  .details{
+    display:flex;
+    flex-wrap:wrap;
+    gap: clamp(18px, 4vw, 50px);
+    margin-top: 22px;
+  }
+  
+  .details h3{
+    font-size: 1.25rem;
     margin-bottom: 10px;
-}
-
-.details ul {
-    list-style: none;
+  }
+  .details ul{
+    list-style:none;
     font-size: 1rem;
-    color: #ffffff;
-}
-
-.profile {
-    position: relative; /* 부모 요소에 position 설정 */
-}
-
-.profile img {
-    width: 300px;
-    height: 400px;
+    color:#fff;
+    opacity:0.95;
+  }
+  
+  .skills-section{
+    display:flex;
+    flex-direction:column;
+    gap: 14px;
+    min-width: 240px;
+  }
+  
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 14px;
+    justify-content:flex-start;
+  }
+  
+  .skill{
+    width: 86px;
+    height: 86px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border: 10px solid rgba(255,255,255,0.85);
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color:#fff;
+    background: transparent;
+  }
+  
+  .profile{
+    display:flex;
+    justify-content:flex-end;
+    align-items:flex-start;
+  }
+  
+  .profile img{
+    width: min(360px, 100%);
+    aspect-ratio: 3 / 4;
+    height: auto;
     object-fit: cover;
-    border-radius: 10px;
-
-    position: absolute; /* 고정 위치에서 움직임 가능 */
-    top: 50px; /* 위쪽 위치 조정 */
-    left: -330px; /* 왼쪽으로 더 이동 (- 값으로 이동) */
-}
-
-
-/* Projects 섹션 */
-.projects-section {
-    padding: 50px;
-    background: #ffffff;
-    text-align: center;
-    
-    
-}
-
-.skills-section {
-    display: flex; /* 가로로 정렬 */
-    flex-direction: column; /* 세로 정렬 (필요한 경우만) */
-    gap: 30px; /* 스킬 사이 간격 */
-    align-items: center; /* 가운데 정렬 */
-}
-
-.skills {
-    display: flex; /* 가로로 정렬 */
-    gap: 30px; /* 동그라미 사이 간격 */
-    justify-content: center; /* 수평 가운데 정렬 */
-}
-
-.skill {
-    width: 100px; /* 동그라미 크기 */
-    height: 100px; /* 동그라미 크기 */
-    display: flex;
-    justify-content: center; /* 수평 가운데 정렬 */
-    align-items: center; /* 수직 가운데 정렬 */
-    border: 20px solid white; /* 동그라미 테두리 */
-    border-radius: 50%; /* 완전한 동그라미 모양 */
-    font-weight: bold; /* 글씨 굵게 */
-    font-size: 1rem; /* 글씨 크기 */
-    color: #ffffff; /* 글씨 색상 */
-    background-color: transparent; /* 동그라미 배경 투명 */
-}
-
-/* Projects 섹션 */
-.projects-section {
-    padding: 60px;
-    background: #ffffff;
-    text-align: center;
-    color: #000000;
-}
-
-.projects-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    font-weight: bold;
-}
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3개씩 1줄 */
-    row-gap: 150px; /* 세로 간격 */
-    column-gap: 70px; /* 가로 간격 */
-    justify-content: center; /* 가로로 가운데 정렬 */
-    align-items: center; /* 세로로 가운데 정렬 */
-    margin-top: 100px;
-    margin-bottom: 100px;
-    width: calc(100% - 20px); /* 화면 너비에서 약간의 여백 제거 */
-    max-width: 1200px; /* 최대 너비 */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-
-/* 프로젝트 카드 스타일 */
-.project-item {
-    text-decoration: none; /* 링크 밑줄 제거 */
-    color: inherit; /* 부모의 텍스트 색상 상속 */
-    width: 400px; /* 카드 크기 */
-    height: 400px;
-    background: #000000;
-    border-radius: 15px; /* 둥근 모서리 */
-    overflow: hidden; /* 내부 콘텐츠 넘침 방지 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    text-align: center;
-    cursor: pointer; /* 버튼처럼 보이게 설정 */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-item:hover {
-    transform: scale(1.05); /* 확대 효과 */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* 그림자 추가 */
-}
-
-.project-item img {
-    filter: grayscale(100%); /* 흑백 이미지 */
-    width: 100%; /* 이미지 너비 */
-    height: 80%; /* 이미지 높이 */
-    object-fit: cover; /* 이미지 비율 유지 */
-    border-radius: 10px;
-    margin-bottom: 0; /* 이미지와 텍스트 간 여백 제거 */
-}
-
-
-.project-item p {
-    margin-top: 25px; /* 이미지와 텍스트 사이 간격 */
-    font-size: 1rem; /* 글자 크기 */
-    font-weight: bold; /* 글자 굵기 */
-    color: #ffffff; /* 텍스트 색상 */
-    text-align: center; /* 텍스트 가운데 정렬 */
-}
-
-
-
-/* Contacts 섹션 */
-.contacts-section {
-    margin-top: 30;
-    padding: 30px;
-    background: #000000;
-    text-align: center;
-}
+    border-radius: var(--radius);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+  }
+  
+  /* ============ Projects ============ */
+  .projects-section{
+    padding: clamp(44px, 6vw, 70px) var(--pad-x);
+    background:#ffffff;
+    text-align:center;
+    color:#000;
+  }
+  
+  .projects-section h2{
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 24px;
+    font-weight: 800;
+  }
+  
+  .project-grid{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display:grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(18px, 3vw, 48px);
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  
+  /* card becomes responsive (no fixed 400x400) */
+  .project-item{
+    text-decoration:none;
+    color:inherit;
+    width:100%;
+    aspect-ratio: 1 / 1;
+    background:#000;
+    border-radius: 18px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding: 12px;
+    cursor:pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .project-item:hover{
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  }
+  
+  .project-item img{
+    filter: grayscale(100%);
+    width:100%;
+    height: 78%;
+    object-fit:cover;
+    border-radius: 12px;
+  }
+  
+  .project-item p{
+    margin-top: 10px;
+    margin-bottom: 6px;
+    font-size: 1rem;
+    font-weight: 800;
+    color:#fff;
+  }
+  
+  /* ============ Contacts ============ */
+  .contacts-section{
+    padding: 44px var(--pad-x);
+    background:#000;
+    text-align:center;
+  }
+  .contacts-section h2{
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+  .contacts-section p{
+    margin-top: 8px;
+    opacity: 0.95;
+  }
+  
+  /* ============ Responsive ============ */
+  @media (max-width: 980px){
+    .intro{ grid-template-columns: 1fr; }
+    .profile{ justify-content:flex-start; }
+    .project-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  
+  @media (max-width: 560px){
+    header{ justify-content:center; }
+    header ul{ gap: 16px; }
+    .project-grid{ grid-template-columns: 1fr; }
+    .skill{ width: 76px; height: 76px; border-width: 9px; }
+  }
+  
