@@ -73,9 +73,9 @@ main{
 
 .desktop-7{
   /* 여기 숫자만 바꾸면 위아래/크기 조절 가능 */
-  --y-role: 4.3%;
-  --y-name: 12.5%;
-  --y-titlecontroller: 5.5%;
+  --y-role: 2.3%;
+  --y-name: 10%;
+  --y-titlecontroller: 2.5%;
 
   --w-role: 60%;
   --w-name: 70%;
